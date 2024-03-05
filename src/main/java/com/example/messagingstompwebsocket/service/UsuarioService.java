@@ -18,15 +18,14 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public void disconnect(Usuario usuario) {
-        var storedUser = usuarioRepository.findById(usuario.getId()).orElseGet(() -> null);
-        if (storedUser != null) {
-            storedUser.setStatus(StatusUsuarioEnum.OFFLINE);
-            usuarioRepository.save(storedUser);
-        }
+    public void disconnectOrConnect(String usuarioId, boolean isConnect) {
+        usuarioRepository.findById(usuarioId).ifPresent(user -> {
+            user.setStatus(isConnect ? StatusUsuarioEnum.ONLINE : StatusUsuarioEnum.OFFLINE);
+            usuarioRepository.save(user);
+        });
     }
 
-    public List<Usuario> findConnectUsers() {
+    public List<Usuario> findConnectedUsers() {
         return usuarioRepository.findByStatus(StatusUsuarioEnum.ONLINE);
     }
 }

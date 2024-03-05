@@ -18,6 +18,7 @@ public class ChatRoom {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name="chat_room_id")
     private String id;
-    @OneToMany(mappedBy = "chatroom")
-    private List<ChatMessage> chatMessages;
+    private String chatId;
+    private String senderId;
+    private String recipientId;
 }
