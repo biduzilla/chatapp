@@ -11,8 +11,6 @@ import lombok.Data;
 @Data
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
     private String nickName;
     private String fullName;
     private StatusUsuarioEnum status;

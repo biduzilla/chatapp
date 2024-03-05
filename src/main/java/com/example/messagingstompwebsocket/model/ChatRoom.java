@@ -16,7 +16,6 @@ import java.util.List;
 public class ChatRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name="chat_room_id")
     private String id;
     private String chatId;
     private String senderId;

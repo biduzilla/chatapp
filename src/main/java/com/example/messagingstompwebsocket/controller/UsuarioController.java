@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@CrossOrigin
 public class UsuarioController {
 
     @Autowired
@@ -26,7 +27,8 @@ public class UsuarioController {
         return usuarioService.save(usuario);
     }
 
-    @MessageMapping("/user.disconnect")
+
+    @MessageMapping("/user.disconnectUser")
     @SendTo("/user/public")
     public void disconnect(@Payload String userId){
         usuarioService.disconnectOrConnect(userId,false);
